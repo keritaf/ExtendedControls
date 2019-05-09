@@ -23,9 +23,9 @@ namespace ExtendedControls
     public class CompositeButton : Control, IDisposable
     {
         public ExtButton[] Buttons { get; set; }
-        public int ButtonSpacing {get;set;} = 8;
+        public int ButtonSpacing {get;set;}
         public Panel[] Decals { get; set; }
-        public int DecalSpacing { get; set; } = 8;
+        public int DecalSpacing { get; set; }
         public int MinimumDecalButtonVerticalSpacing { get; set; } = 8;
         public override Image BackgroundImage { get { return backgroundpanel.BackgroundImage; } set { backgroundpanel.BackgroundImage = value; } }
         public override ImageLayout BackgroundImageLayout { get { return backgroundpanel.BackgroundImageLayout; } set { backgroundpanel.BackgroundImageLayout = value; } }
@@ -47,6 +47,8 @@ namespace ExtendedControls
             textlab.BackColor = Color.Transparent;
             backgroundpanel.Controls.Add(textlab);
             Controls.Add(backgroundpanel);
+            ButtonSpacing = LogicalToDeviceUnits(8);
+            DecalSpacing = LogicalToDeviceUnits(8);
         }
 
         public new void Dispose()
@@ -144,7 +146,7 @@ namespace ExtendedControls
 
             backgroundpanel.Size = ClientRectangle.Size;
             textlab.Location = new Point(Padding.Left,Padding.Top);
-            textlab.Size = new Size(husabled,20);
+            textlab.Size = new Size(husabled,LogicalToDeviceUnits(20));
 
             int buttonvtop = ClientRectangle.Height;
 
